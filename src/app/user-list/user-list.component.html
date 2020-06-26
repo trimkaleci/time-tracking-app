@@ -1,0 +1,22 @@
+
+<div class="container">
+  <mat-card>
+
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Email</th>
+          <th scope="col">Start Work Time</th>
+          <th scope="col">End Work Time </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td><a href="mailto:{{ user.emailAddress }}">{{ user.emailAddress }}</a></td>
+          <td>{{ user.checkedInTime | date: "short" }}</td>
+          <td>{{ user.checkedOutTime | date: "short" }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </mat-card>
+  </div>

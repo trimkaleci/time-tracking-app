@@ -1,0 +1,34 @@
+<div class="container">
+    <form class="form-inline" (ngSubmit)="onSearchUser()">
+        <div class="form-group">
+            <mat-form-field >
+                <mat-label>Email</mat-label>
+                <input name = "usersEmailAddress" matInput [(ngModel)]="usersEmailAddress" placeholder="Ex. yourname@example.com">
+            </mat-form-field>
+        </div>
+        <div class="form-group"> 
+            <button class="btn btn-dark ml-3" type="submit">Search</button>
+        </div>
+    </form>
+
+    <mat-card>
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Email</th>
+                <th scope="col">Start Work Time</th>
+                <th scope="col">End Work Time </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let userRecord of userRecords">
+                <td><a href="mailto:{{ userRecord.email }}">{{ userRecord.email }}</a></td>
+                <td>{{ userRecord.start | date: "short" }}</td>
+                <td>{{ userRecord.end | date: "short" }}</td>
+              </tr>
+            </tbody>
+          </table>
+
+    </mat-card>
+
+</div>
