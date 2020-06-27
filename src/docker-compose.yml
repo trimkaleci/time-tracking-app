@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  tracking-app-backend:
+    image: alirizasaral/timetracker
+    ports:
+      -8080:8080
+
+  tracking-app-frontend:
+    image: leutrimkaleci/angular-app
+    ports:
+      -9000:80
