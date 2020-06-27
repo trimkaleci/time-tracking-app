@@ -63,7 +63,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "timetrackingclient:build"
+            "browserTarget": "timetrackingclient:build",
+            "proxyConfig": "src/proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -123,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "timetrackingclient"
+  "defaultProject": "timetrackingclient",
+  "cli": {
+    "analytics": false
+  }
 }
