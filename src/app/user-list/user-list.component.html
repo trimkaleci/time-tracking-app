@@ -12,9 +12,9 @@
       </thead>
       <tbody>
         <tr *ngFor="let user of users">
-          <td><a href="mailto:{{ user.emailAddress }}">{{ user.emailAddress }}</a></td>
-          <td>{{ user.checkedInTime | date: "short" }}</td>
-          <td>{{ user.checkedOutTime | date: "short" }}</td>
+          <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
+          <td>{{ user.start | date: "short" }}</td>
+          <td>{{ user.end | date: "short" }}</td>
         </tr>
       </tbody>
     </table>

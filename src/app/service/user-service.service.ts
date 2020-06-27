@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { tap, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 import { User } from '../model/user';
 
@@ -13,26 +13,30 @@ export class UserServiceService {
 
 
   constructor(private http: HttpClient) { 
-    this.userUrl = 'http://localhost:8080/users';
+    this.userUrl = '/records';
   }
 
-  public findAll(): Observable<User[]> {
-    return this.http.get<User[]>(this.userUrl).pipe(
+ /* public findAll(): Observable<User[]> {
+    return this.http.get<User[]>("/records").pipe(
       map((users) => users
       .map((user) => Object.assign(new User(), user))
       .map((val) => val.processingAfterPropertiesSet())
       )
     );
+  } */
+
+  public findAll(): Observable<User[]> {
+    return this.http.get<User[]>("/records")
   }
 
   public getUserByEmailAddress(emailAddress: string): Observable<User[]> {
     let params = new HttpParams()
-    .set('emailAddress', emailAddress);
+    .set('email', emailAddress);
 
-    return this.http.get<User[]>(this.userUrl + '/user', {params})
+    return this.http.get<User[]>("/records", {params});
   }
 
   public save(user: User) {
-    return this.http.post<User>(this.userUrl, user);
+    return this.http.post<User>("/records/", user);
   }
 }

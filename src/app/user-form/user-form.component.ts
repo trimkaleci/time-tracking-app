@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserServiceService } from '../service/user-service.service';
 import { User } from '../model/user';
+import { empty } from 'rxjs';
 
 
 @Component({
@@ -15,7 +16,6 @@ export class UserFormComponent implements OnInit {
 
   startWorkTime: Date;
   endWorkTime: Date;
-  userName: string;
 
   constructor( 
     private route: ActivatedRoute,
@@ -23,25 +23,47 @@ export class UserFormComponent implements OnInit {
     private userService: UserServiceService) {
 
       this.user = new User();
-      this.startWorkTime = new Date("1/1/2020 1:30 PM");
-      this.endWorkTime = new Date("1/1/2020 1:30 PM") ;
      }
 
      ngOnInit(): void {
     }
   
   onSubmit() {
-    this.convertDateObjToIso();
-    this.userService.save(this.user).subscribe(result => this.navigateToUsersList());
+    this.convertDateObjToString();
+    this.userService.save(this.user).subscribe(result => console.log("user SAVED: " +result.email));
   }  
 
-  convertDateObjToIso() {
-    this.user.start = this.startWorkTime.toISOString();
-    this.user.end = this.endWorkTime.toISOString();
+  convertDateObjToString() {
+    let startWorkTimeToString = this.startWorkTime.toLocaleDateString() + " " + this.startWorkTime.toLocaleTimeString();
+    startWorkTimeToString = this.extractDateAndTimeFromString(startWorkTimeToString);
+
+    let endWorkTimeToString = this.endWorkTime.toLocaleDateString() + " " + this.endWorkTime.toLocaleTimeString();
+    endWorkTimeToString = this.extractDateAndTimeFromString(startWorkTimeToString);
+
+    console.log("start : " + startWorkTimeToString);
+
+    this.user.start =  startWorkTimeToString;
+    this.user.end = endWorkTimeToString;
   }
 
   navigateToUsersList() {
     this.router.navigate(['/users'])
+  }
+
+  extractDateAndTimeFromString(dateAndTimeGiven: string){
+    const am = "AM"
+    const pm = "PM"
+    const emptyString = "";
+    
+    dateAndTimeGiven.replace(/\//g, ".");
+
+    if(dateAndTimeGiven.includes(am)) {
+      dateAndTimeGiven.replace(am, emptyString);
+    } else {
+      dateAndTimeGiven.replace(am, emptyString);
+    }
+
+    return dateAndTimeGiven;
   }
 
 }
