@@ -37,6 +37,11 @@ export class UserServiceService {
   }
 
   public save(user: User) {
-    return this.http.post<User>("/records/", user);
+    let data = new HttpParams()
+    .set('email', user.email)
+    .set('start', user.start)
+    .set('end', user.end);
+
+    return this.http.post("/records", data);
   }
 }

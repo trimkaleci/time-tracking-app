@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserServiceService } from '../service/user-service.service';
 import { User } from '../model/user';
-import { empty } from 'rxjs';
+import { DatePipe } from '@angular/common'
 
 
 @Component({
@@ -30,17 +30,15 @@ export class UserFormComponent implements OnInit {
   
   onSubmit() {
     this.convertDateObjToString();
-    this.userService.save(this.user).subscribe(result => console.log("user SAVED: " +result.email));
+    this.userService.save(this.user).subscribe(result => this.navigateToUsersList());
   }  
 
   convertDateObjToString() {
-    let startWorkTimeToString = this.startWorkTime.toLocaleDateString() + " " + this.startWorkTime.toLocaleTimeString();
-    startWorkTimeToString = this.extractDateAndTimeFromString(startWorkTimeToString);
+    const pipeObj = new DatePipe('en-US');
+    const dateFormatString = "dd.MM.yyyy hh:mm";
 
-    let endWorkTimeToString = this.endWorkTime.toLocaleDateString() + " " + this.endWorkTime.toLocaleTimeString();
-    endWorkTimeToString = this.extractDateAndTimeFromString(startWorkTimeToString);
-
-    console.log("start : " + startWorkTimeToString);
+    const  startWorkTimeToString = pipeObj.transform(this.startWorkTime, dateFormatString);
+    const  endWorkTimeToString = pipeObj.transform(this.endWorkTime, dateFormatString);
 
     this.user.start =  startWorkTimeToString;
     this.user.end = endWorkTimeToString;
@@ -48,22 +46,6 @@ export class UserFormComponent implements OnInit {
 
   navigateToUsersList() {
     this.router.navigate(['/users'])
-  }
-
-  extractDateAndTimeFromString(dateAndTimeGiven: string){
-    const am = "AM"
-    const pm = "PM"
-    const emptyString = "";
-    
-    dateAndTimeGiven.replace(/\//g, ".");
-
-    if(dateAndTimeGiven.includes(am)) {
-      dateAndTimeGiven.replace(am, emptyString);
-    } else {
-      dateAndTimeGiven.replace(am, emptyString);
-    }
-
-    return dateAndTimeGiven;
   }
 
 }
