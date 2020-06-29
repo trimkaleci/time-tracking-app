@@ -1,8 +1,8 @@
-# Timetrackingclient
+# Time Tracking App
 
 Time-tracking-app is an Angular-based frontend application which extends an already developed backend application (available as a docker image), such that providing a user-friendly interface. 
 
-## Building and running the application 
+## Build and run the application 
 Since time-tracking-app depends on an already existing application provided as a docker image, firstly its running is necessary - running the docker image available. Once the docker image is run, the following step shoud be followed:
 
 - Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
