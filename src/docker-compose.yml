@@ -7,6 +7,6 @@ services:
       -8080:8080
 
   tracking-app-frontend:
-    image: leutrimkaleci/angular-app
+    build: ../
     ports:
       -9000:80
