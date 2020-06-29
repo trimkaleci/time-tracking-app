@@ -9,11 +9,14 @@ import { User } from '../model/user';
 @Injectable()
 export class UserServiceService {
 
-  private userUrl: string;
+  private baseUrl: string;
 
 
   constructor(private http: HttpClient) { 
-    this.userUrl = '/records';
+    // this url should be enabled if a docker image is built, 
+    // and the application is run as a docker container (instead of just using "ng serve")
+    //this.baseUrl = '"http://localhost:8080/records"';
+    this.baseUrl = "/records";
   }
 
  /* public findAll(): Observable<User[]> {
@@ -26,14 +29,14 @@ export class UserServiceService {
   } */
 
   public findAll(): Observable<User[]> {
-    return this.http.get<User[]>("/records")
+    return this.http.get<User[]>(this.baseUrl)
   }
 
   public getUserByEmailAddress(emailAddress: string): Observable<User[]> {
     let params = new HttpParams()
     .set('email', emailAddress);
 
-    return this.http.get<User[]>("/records", {params});
+    return this.http.get<User[]>(this.baseUrl, {params});
   }
 
   public save(user: User) {
@@ -42,6 +45,6 @@ export class UserServiceService {
     .set('start', user.start)
     .set('end', user.end);
 
-    return this.http.post("/records", data);
+    return this.http.post(this.baseUrl, data);
   }
 }
