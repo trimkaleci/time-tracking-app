@@ -15,5 +15,5 @@ Once the image built, please run the next command as shown below (an interactive
 
 - docker run -it --rm -p 9000:80 angular-app 
 
-Note: Both approaches require running firstly the dockerized backend application. Additionally, the application can be run using the docker_compose.yml within /src directoy (but at the moment not tested).
+Note: Both approaches require running firstly the dockerized backend application. Additionally, the application can be run using the docker-compose.yml within /src directoy (but at the moment not tested).
  
