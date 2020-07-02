@@ -1,27 +1,19 @@
-# Timetrackingclient
+# Time Tracking App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.9.
+Time-tracking-app is an Angular-based frontend application which extends an already developed backend application (available as a docker image), such that providing a user-friendly interface. 
 
-## Development server
+## Build and run the application 
+Since time-tracking-app depends on an already existing application provided as a docker image, firstly its running is necessary - running the docker image available. Once the docker image is run, the following step shoud be followed:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+The second approach of running the app is by creating a docker image from the provided Dockerfile within the root directory. In order to create the docker image, please run the following command:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- docker build -t angular-app .
 
-## Build
+Once the image built, please run the next command as shown below (an interactive-based approach):
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+- docker run -it --rm -p 9000:80 angular-app 
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Note: Both approaches require running firstly the dockerized backend application. Additionally, the application can be run using the docker-compose.yml within /src directoy (but at the moment not tested).
+ 
