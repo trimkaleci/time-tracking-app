@@ -1,12 +1,16 @@
-version: '2'
+version: '3'
 
 services:
-  tracking-app-backend:
-    image: "alirizasaral/timetracker:1"
-    ports:
-      - "8080:8080"
-
   tracking-app-frontend:
+    container_name: frontend_time_tracking
     build: ../
     ports:
       - "9000:80"
+    depends_on:
+      - tracking-app-backend
+
+  tracking-app-backend:
+    container_name: backend_time_tracking
+    image: "alirizasaral/timetracker:1"
+    ports:
+      - "8080:8080"
