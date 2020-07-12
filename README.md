@@ -9,19 +9,19 @@ Since time-tracking-app depends on an already existing application provided as a
 
 2. The second approach of running the application is by creating a docker image from the provided Dockerfile within the root directory. In order to create the docker image, please run the following command:
 
-- docker build -t angular-app .
+    - docker build -t angular-app .
 
-Once the image is built, please run the next command as shown below (an interactive-based approach):
+    Once the image is built, please run the next command as shown below (an interactive-based approach):
 
-- docker run -it --rm -p 9000:80 angular-app 
+    - docker run -it --rm -p 9000:80 angular-app 
 
-Note: Both approaches require running firstly the dockerized backend application. 
+    Note: Both approaches require running firstly the dockerized backend application. 
 
 3. Additionally, the application can be run using the docker-compose.yml within /src directoy, such that avoiding running the forntend and backend docker images separately by using the following commnad:
 
-- docker-compose up
+    - docker-compose up
 
-Once the application is run, it can be accessed through a web browser by typing the following: 
-- `http://localhost:9000/`
+    Once the application is run, it can be accessed through a web browser by typing the following: 
+    - `http://localhost:9000/`
  
 
