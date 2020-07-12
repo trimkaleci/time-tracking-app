@@ -20,4 +20,8 @@ Note: Both approaches require running firstly the dockerized backend application
 Additionally, the application can be run using the docker-compose.yml within /src directoy, such that avoiding running the forntend and backend docker images separately by using the following commnad:
 
 - docker-compose up
+
+Once the application is run, it can be accessed through a web browser by typing the following: 
+- `http://localhost:9000/`
  
+
